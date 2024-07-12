@@ -8,7 +8,8 @@ import {
 export const CartDropdownContainer = styled.div`
   position: absolute;
   width: 340px;
-  height: 370px;
+  height: 340px;
+  overflow-x: scroll;
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -21,7 +22,7 @@ export const CartDropdownContainer = styled.div`
   ${BaseButton},
   ${GoogleSignInButton},
     ${InvertedButton} {
-    margin-top: auto;
+    margin-top: 10px;
   }
 `;
 

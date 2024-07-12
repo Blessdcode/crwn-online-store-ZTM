@@ -11,8 +11,9 @@ import CartItem from "../cart-item/cart-item.component";
 import {CartDropdownContainer, cartItems, EmptyMessage} from "./cart-dropdown.styles.jsx";
 
 const CartDropdown = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, clearCart } = useContext(CartContext);
   const navigate = useNavigate();
+  const clearItemHandler = () => clearCart();
 
   const goToCheckoutHandler = () => {
     navigate("/checkout");
@@ -28,6 +29,7 @@ const CartDropdown = () => {
         )}
       </cartItems>
       <Button onClick={goToCheckoutHandler}>GO TO CHECKOUT</Button>
+      <Button onClick={clearItemHandler}>CLEAR CART</Button>
     </CartDropdownContainer>
   );
 };
