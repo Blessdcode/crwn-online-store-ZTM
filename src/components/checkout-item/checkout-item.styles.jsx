@@ -22,6 +22,9 @@ export const ImageContainer = styled.div`
 
 export const BaseSpan = styled.span`
   width: 23%;
+  @media (max-width: 786px) {
+    font-size: 14px;
+  }
 `;
 
 export const Quantity = styled(BaseSpan)`
@@ -30,6 +33,9 @@ export const Quantity = styled(BaseSpan)`
 
 export const Arrow = styled.div`
   cursor: pointer;
+  @media (max-width: 786px) {
+    font-size: 14px;
+  }
 `;
 
 export const Value = styled.span`

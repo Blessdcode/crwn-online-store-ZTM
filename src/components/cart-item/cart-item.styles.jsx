@@ -7,12 +7,21 @@ export const CartItemContainer = styled.div`
   margin-bottom: 15px;
 
   img {
-    width: 30%;
+    width: 45%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+
+    @media (max-width: 768px) {
+      width: 65%;
+      /* height: fit-content; */
+      
+    }
   }
 `;
 
 export const ItemDetails = styled.div`
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

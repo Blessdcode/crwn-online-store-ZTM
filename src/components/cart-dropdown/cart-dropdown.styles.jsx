@@ -7,9 +7,8 @@ import {
 
 export const CartDropdownContainer = styled.div`
   position: absolute;
-  width: 340px;
-  height: 340px;
-  overflow-x: scroll;
+  width: 370px;
+  height: 440px;
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -24,16 +23,38 @@ export const CartDropdownContainer = styled.div`
     ${InvertedButton} {
     margin-top: 10px;
   }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    height: fit-content;
+    right: 0;
+  }
 `;
 
 export const EmptyMessage = styled.div`
   font-size: 18px;
   margin: 50px auto;
+  @media (max-width: 600px) {
+    margin-top: 25px;
+  }
 `;
 
 export const CartItems = styled.div`
-  height: 240px;
+  height: 340px;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow-x: scroll;
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: white;
+  }
 `;

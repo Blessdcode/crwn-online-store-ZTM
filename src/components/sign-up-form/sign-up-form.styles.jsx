@@ -7,5 +7,18 @@ export const SignUpContainer = styled.div`
 
   h2 {
     margin: 10px 0;
+    @media (max-width: 600px) {
+      font-size: 20px;
+    }
+  }
+
+  span {
+     @media (max-width: 600px) {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    width: fit-content;
   }
 `;
