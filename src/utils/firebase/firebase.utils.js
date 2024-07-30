@@ -29,7 +29,7 @@ const firebaseConfig = {
   appId: "1:884218866959:web:d53084bd5ef1e202cfe27a",
 };
 
-const firebaseApp = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -124,7 +124,6 @@ export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
-
 
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
