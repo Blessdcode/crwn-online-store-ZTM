@@ -9,7 +9,7 @@ import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component
 import { UserContext } from "../../contexts/user.context";
 // import { CartContext } from "../../contexts/cart.context";
 // import { selectCurrentUser } from "../../store/user/user.selector";
-import {selectCurrentUser} from '../../store/user/user.selector.js'
+// import {selectCurrentUser} from '../../store/user/user.selector.js'
 import {selectIsCartOpen} from '../../store/cart/cart.selector.js'
 
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
