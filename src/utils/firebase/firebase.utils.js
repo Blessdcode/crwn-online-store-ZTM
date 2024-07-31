@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
   onAuthStateChanged,
 } from "firebase/auth";
 import {
@@ -107,6 +108,16 @@ export const createUserDocumentFromAuth = async (
 
   return userDocRef;
 };
+export const updateUserProfile = async (user, additionalData) => {
+  if (user) {
+    try {
+      await updateProfile(user, additionalData);
+    } catch (error) {
+      console.error("Error updating user profile", error);
+    }
+  }
+};
+
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;

@@ -43,7 +43,8 @@ export const setIsCartOpen = (bool) =>
   createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, bool);
 
 export const clearCart = (bool) => {
-  createAction(CART_ACTION_TYPES.CLEAR_CART, bool);
+   console.log("clearCart action called");
+  return createAction(CART_ACTION_TYPES.SET_CLEAR_CART);
 };
 
 export const addItemToCart = (cartItems, productToAdd) => {

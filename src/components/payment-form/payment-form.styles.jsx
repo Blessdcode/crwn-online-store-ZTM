@@ -19,3 +19,13 @@ export const PaymentButton = styled(Button)`
   margin-left: auto;
   margin-top: 30px;
 `;
+
+
+export const EmptyMessage = styled.div`
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom:16px;
+  @media (max-width: 600px) {
+    margin-top: 25px;
+  }
+`;

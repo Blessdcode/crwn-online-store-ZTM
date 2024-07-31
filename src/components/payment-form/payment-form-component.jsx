@@ -1,26 +1,36 @@
 import { useState, useContext } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { selectCartTotal } from "../../store/cart/cart.selector";
+import {
+  selectCartItems,
+  selectCartTotal,
+} from "../../store/cart/cart.selector";
 
-import  { BUTTON_TYPE_CLASSES } from "../button/button.component";
+import { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import { UserContext } from "../../contexts/user.context";
+import { clearCart } from "../../store/cart/cart.action";
+
 // import { userContext } from "../../contexts/user.context";
 
 import {
   PaymentFormContainer,
   FormContainer,
   PaymentButton,
+  EmptyMessage,
 } from "./payment-form.styles";
 
 const PaymentForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const amount = useSelector(selectCartTotal);
+  const cartItems = useSelector(selectCartItems);
   const { currentUser } = useContext(UserContext);
-  const [isProcessingPayment, setIsProcessingPayment] = useState(false)
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  const dispatch = useDispatch();
 
+   if (!currentUser) return null;
+  const displayName = currentUser.displayName;
 
   const paymentHandler = async (e) => {
     e.preventDefault();
@@ -29,7 +39,7 @@ const PaymentForm = () => {
       return;
     }
 
-    setIsProcessingPayment(true)
+    setIsProcessingPayment(true);
 
     const response = await fetch("/.netlify/functions/create-payment-intent", {
       method: "post",
@@ -47,36 +57,42 @@ const PaymentForm = () => {
       payment_method: {
         card: elements.getElement(CardElement),
         billing_details: {
-          name: currentUser ? currentUser.displayName: "Guest"
+          name: currentUser ? currentUser.displayName : "Guest",
         },
       },
     });
 
-
-    setIsProcessingPayment(false)
+    setIsProcessingPayment(false);
 
     if (paymentResult.error) {
       alert(paymentResult.error);
     } else {
       if (paymentResult.paymentIntent.status === "succeeded") {
         alert("Payment Successful");
+        dispatch(clearCart());
       }
     }
   };
   return (
     <PaymentFormContainer>
-      <FormContainer onSubmit={paymentHandler}>
-        <h2>Credit Card Payment:</h2>
-        <CardElement />
-        <PaymentButton
-          isLoading={isProcessingPayment}
-          buttonType={BUTTON_TYPE_CLASSES.inverted}>
-          Pay Now
-        </PaymentButton>
-      </FormContainer>
+      {cartItems.length ? (
+        <FormContainer onSubmit={paymentHandler}>
+          <h2>Credit Card Payment:</h2>
+          <CardElement />
+          <PaymentButton
+            isLoading={isProcessingPayment}
+            buttonType={BUTTON_TYPE_CLASSES.inverted}>
+            Pay Now
+          </PaymentButton>
+        </FormContainer>
+      ) : (
+        <>
+          <EmptyMessage>Your Cart is Empty {displayName}</EmptyMessage>
+          
+        </>
+      )}
     </PaymentFormContainer>
   );
 };
 
 export default PaymentForm;
-
