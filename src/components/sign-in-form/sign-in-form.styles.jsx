@@ -18,7 +18,7 @@ export const SignInContainer = styled.div`
     }
   }
   @media (max-width: 600px) {
-    width: fit-content;
+    width: 100%;
     /* overflow: hidden; */
   }
 `;

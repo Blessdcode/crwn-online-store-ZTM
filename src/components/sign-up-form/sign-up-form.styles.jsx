@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const SignUpContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
   width: 380px;
 
   h2 {
@@ -13,12 +14,12 @@ export const SignUpContainer = styled.div`
   }
 
   span {
-     @media (max-width: 600px) {
+    @media (max-width: 600px) {
       font-size: 12px;
     }
   }
 
   @media (max-width: 600px) {
-    width: fit-content;
+    width: 100%;
   }
 `;

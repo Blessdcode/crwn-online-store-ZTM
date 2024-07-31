@@ -44,7 +44,7 @@ export const NavLinks = styled.div`
   justify-content: flex-end;
 
   @media (max-width: 600px) {
-    width: 100%;
+    width: 60%;
     justify-content: flex-start;
     margin-left: 50px;
     /* flex-direction: column; */
