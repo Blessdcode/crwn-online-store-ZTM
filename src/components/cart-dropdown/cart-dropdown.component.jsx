@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 // import { CartContext } from "../../contexts/cart.context";
 import Button from "../button/button.component";
 import CartItem from "../cart-item/cart-item.component";
-import { selectCartItems } from "../../store/cart/cart.selector.js";
+import { selectCartItems } from "../../store/cart/cart.selector";
+import { clearCart } from "../../store/cart/cart.action";
 
 
 import {
@@ -13,7 +14,6 @@ import {
   CartItems,
   EmptyMessage,
 } from "./cart-dropdown.styles.jsx";
-import { clearCart } from "../../store/cart/cart.action.js";
 
 const CartDropdown = () => {
   const dispatch = useDispatch()
