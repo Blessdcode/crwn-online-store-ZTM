@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 import {
   selectCartItems,
@@ -18,6 +19,7 @@ import {
   FormContainer,
   PaymentButton,
   EmptyMessage,
+  SignInPrompt,
 } from "./payment-form.styles";
 
 const PaymentForm = () => {
@@ -27,14 +29,17 @@ const PaymentForm = () => {
   const cartItems = useSelector(selectCartItems);
   const { currentUser } = useContext(UserContext);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  // const [showSignInPrompt, setShowSignInPrompt] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-   if (!currentUser) return null;
-  const displayName = currentUser.displayName;
+  //  if (!currentUser) return null;
+  // const displayName = currentUser.displayName;
 
   const paymentHandler = async (e) => {
     e.preventDefault();
 
+  
     if (!stripe || !elements) {
       return;
     }
@@ -73,8 +78,30 @@ const PaymentForm = () => {
       }
     }
   };
+
+  const authHandler = () => {
+    navigate("/auth");
+  };
+ 
+
+    if (!currentUser) {
+      return (
+        <FormContainer>
+          <SignInPrompt>
+            Please sign in to proceed with the payment.
+          </SignInPrompt>
+          <PaymentButton
+          onClick={authHandler}
+            buttonType={BUTTON_TYPE_CLASSES.inverted}>
+            Log in here
+          </PaymentButton>
+        </FormContainer>
+      );
+    }
+  
   return (
     <PaymentFormContainer>
+  
       {cartItems.length ? (
         <FormContainer onSubmit={paymentHandler}>
           <h2>Credit Card Payment:</h2>
@@ -86,10 +113,7 @@ const PaymentForm = () => {
           </PaymentButton>
         </FormContainer>
       ) : (
-        <>
-          <EmptyMessage>Your Cart is Empty {displayName}</EmptyMessage>
-          
-        </>
+        <EmptyMessage>Your Cart is Empty</EmptyMessage>
       )}
     </PaymentFormContainer>
   );

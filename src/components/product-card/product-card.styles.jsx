@@ -51,3 +51,18 @@ export const Name = styled.span`
 export const Price = styled.span`
   width: 10%;
 `;
+
+export const NotificationContainer = styled.div`
+  width: 100%;
+  position: fixed;
+  top: 20px;
+  right: 0;
+  left: 0;
+  padding: 10px 20px;
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  margin:5px 10px;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+`;

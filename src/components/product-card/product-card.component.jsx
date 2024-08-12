@@ -1,4 +1,4 @@
-// import { useContext } from "react";
+import { useState } from "react";
 // import { CartContext } from "../../contexts/cart.context";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -11,6 +11,7 @@ import {
   Footer,
   Name,
   Price,
+  NotificationContainer,
 } from "./product-card.styles";
 
 const ProductCard = ({ product }) => {
@@ -19,10 +20,19 @@ const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
 
+  const [message, setMessage] = useState(false);
+
+  const handleAddToCart = () => {
+    setMessage(`Item has been added to cart!!`);
+    setTimeout(() => {
+      setMessage("");
+    }, 3000);
+  };
+
   const addProductToCart = () => {
     dispatch(addItemToCart(cartItems, product));
-    alert("Item added to cart!")
-  }
+    handleAddToCart();
+  };
 
   return (
     <ProductCartContainer ProductCartContainer>
@@ -36,6 +46,7 @@ const ProductCard = ({ product }) => {
         onClick={addProductToCart}>
         Add to cart
       </Button>
+      {message && <NotificationContainer>{message}</NotificationContainer>}
     </ProductCartContainer>
   );
 };

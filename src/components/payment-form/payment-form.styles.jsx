@@ -29,3 +29,10 @@ export const EmptyMessage = styled.div`
     margin-top: 25px;
   }
 `;
+
+
+export const SignInPrompt = styled.span`
+  font-size: 18px;
+  margin: 20px auto;
+  color: red;  
+`;
