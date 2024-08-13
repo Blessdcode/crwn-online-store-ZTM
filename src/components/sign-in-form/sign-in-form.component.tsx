@@ -1,4 +1,5 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
+import {useNavigate} from 'react-router-dom'
 
 import FormInput from "../form-input/form-input.component";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
@@ -9,7 +10,6 @@ import {
 } from "../../utils/firebase/firebase.utils";
 
 import { SignInContainer, ButtonsContainer } from "./sign-in-form.styles";
-import { useNavigate } from 'react-router-dom';
 
 const defaultFormFields = {
   email: "",
@@ -29,7 +29,7 @@ const SignInForm = () => {
   const signInWithGoogle = async () => {
    try {
       await signInWithGooglePopup();
-      navigate('/'); 
+      navigate(-1); 
     } catch (error) {
       console.log("Google sign in failed", error);
     }
@@ -41,7 +41,7 @@ const SignInForm = () => {
     try {
       await signInAuthUserWithEmailAndPassword(email, password);
       resetFormFields();
-       navigate('/');
+      navigate(-1); 
     } catch (error) {
       console.log("user sign in failed", error);
     }
