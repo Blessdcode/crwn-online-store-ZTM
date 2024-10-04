@@ -11,7 +11,7 @@ import { UserProvider } from "./contexts/user.context";
 // import { CartProvider } from "./contexts/cart.context";
 import { stripePromise } from "./utils/stripe/stripe-utils";
 
-import "./index.scss";
+// import "./index.scss"; 
 import { store, persistor } from "./store/store";
 
 const rootElement = document.getElementById("root");
