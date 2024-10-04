@@ -4,7 +4,7 @@ export const GlobalStyle = createGlobalStyle`
 body {
   margin: 0;
   font-family: "Ubuntu", sans-serif;
-  padding: 20px 40px;
+  padding: 20px;
 }
 
 a {
